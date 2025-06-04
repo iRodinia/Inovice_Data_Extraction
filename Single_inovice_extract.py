@@ -206,6 +206,9 @@ def extract_inovice_info(fpath):
         for em in pg:
             if isinstance(em, LTTextContainer):
                 for txl in em:
+                    if not hasattr(txl, 'x0'):
+                        continue
+
                     if item_bias == 0:  # extract general information on the first page
                         lin_text = txl.get_text()
                         lin_pos = [txl.x0, txl.y0, txl.x1, txl.y1]
@@ -246,6 +249,10 @@ def extract_inovice_info(fpath):
                             else:
                                 inovice_info_dict['total_tax'] = lin_text
                             continue
+
+
+                    if not hasattr(txl, '__iter__'):
+                        txl = [txl]
 
                     for ch in txl:
                         if isinstance(ch, LTChar):
@@ -297,6 +304,9 @@ def extract_inovice_info(fpath):
                                     continue
                     
                     if lyt['total_price_and_tax_bx'][0] != None:  # extract total price and tax on the last page
+                        if isinstance(txl, list):
+                            txl = txl[0]
+                            
                         lin_text = txl.get_text()
                         lin_pos = [txl.x0, txl.y0, txl.x1, txl.y1]
                         if lin_text[-1] == '\n':

@@ -3,7 +3,8 @@ import pandas as pd
 from helper_functions import *
 from Single_inovice_extract import extract_inovice_info
 
-inovice_folder = 'C:inovices/'
+inovice_outer_folder = 'C:/Users/cz/Documents/OneDrive - HKUST (Guangzhou)/HKUST_files/报销相关/报销单/'
+inovice_folder = inovice_outer_folder + '发票25-4-18'
 
 pdf_paths = get_pdf_paths(inovice_folder)
 
