@@ -36,11 +36,13 @@ def extract_inovice_info(fpath):
         for element in page:
             if isinstance(element, LTTextContainer):
                 ele_text = element.get_text()
-                if '发票号码' in ele_text:
+                ele_text_no_space = ele_text.replace(' ', '')
+
+                if '发票号码' in ele_text_no_space or '发票号码' in ele_text_no_space:
                     _layout['inovice_number_bx'] = [element.x0, element.y0-D_PIX, page.x1, element.y1+D_PIX]
                     continue
 
-                if '开票日期' in ele_text:
+                if '开票日期' in ele_text_no_space or '开票日期' in ele_text_no_space:
                     _layout['inovice_date_bx'] = [element.x0, element.y0-D_PIX, page.x1, element.y1+D_PIX]
                     continue
 
@@ -48,7 +50,7 @@ def extract_inovice_info(fpath):
                     _layout['seller_info_bx'] = [element.x0, element.y0-D_PIX, page.x1, element.y1+D_PIX]
                     continue
 
-                if '规格型号' in ele_text:
+                if '规格型号' in ele_text or '规格型号' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
                         if '规格型号' in lin_text:
