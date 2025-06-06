@@ -7,19 +7,19 @@ def fix_unstructured_layout(layout_dict):  # here we deal with unstructured pdfs
     if layout_dict['total_price_bx'][0] == None:
         layout_dict['total_price_bx'][0] = layout_dict['item_price_bx'][0]
     if layout_dict['total_price_bx'][1] == None:
-        layout_dict['total_price_bx'][1] = layout_dict['item_price_bx'][1] - 6*D_PIX
+        layout_dict['total_price_bx'][1] = layout_dict['item_price_bx'][1] - 12*D_PIX
     if layout_dict['total_price_bx'][3] == None:
         layout_dict['total_price_bx'][3] = layout_dict['item_taxrate_bx'][1] + D_PIX
     
     if layout_dict['total_tax_bx'][1] == None:
-        layout_dict['total_tax_bx'][1] = layout_dict['item_price_bx'][1] - 6*D_PIX
+        layout_dict['total_tax_bx'][1] = layout_dict['item_price_bx'][1] - 12*D_PIX
     if layout_dict['total_tax_bx'][2] == None:
         layout_dict['total_tax_bx'][2] = layout_dict['item_tax_bx'][1]
     if layout_dict['total_tax_bx'][3] == None:
         layout_dict['total_tax_bx'][3] = layout_dict['item_tax_bx'][1] + D_PIX
     
     if layout_dict['total_price_and_tax_bx'][3] == None and layout_dict['total_price_and_tax_bx'][1] != None:
-        layout_dict['total_price_and_tax_bx'][3] = layout_dict['total_price_and_tax_bx'][1] + 6*D_PIX
+        layout_dict['total_price_and_tax_bx'][3] = layout_dict['total_price_and_tax_bx'][1] + 12*D_PIX
 
 
 def extract_inovice_info(fpath):
