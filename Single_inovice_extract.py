@@ -235,7 +235,7 @@ def extract_inovice_info(fpath):
                             continue
                         
                         if is_inside_box(lin_pos, lyt['seller_info_bx']):
-                            if ':' in lin_text or '：' in lin_text or len(lin_text) <= 2:
+                            if ':\n' in lin_text or '：\n' in lin_text or len(lin_text) <= 2:
                                 continue
                             if lin_pos[1] >= 0.5 * (lyt['seller_info_bx'][1] + lyt['seller_info_bx'][3]):
                                 inovice_info_dict['seller_name'] = lin_text
