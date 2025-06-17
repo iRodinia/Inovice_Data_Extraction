@@ -4,10 +4,10 @@ import pandas as pd
 from helper_functions import *
 from Single_inovice_extract import extract_inovice_info
 
-# inovice_outer_folder = 'C:/Users/cz/Documents/OneDrive - HKUST (Guangzhou)/HKUST_files/报销相关/报销单/'
-# inovice_folder = inovice_outer_folder + '发票25-4-26'
+inovice_outer_folder = 'C:/Users/cz/Documents/OneDrive - HKUST (Guangzhou)/HKUST_files/报销相关/报销单/'
+inovice_folder = inovice_outer_folder + '发票25-6-14'
 
-inovice_folder = os.path.dirname(os.path.abspath(__file__))  # for strange inovice debug only
+# inovice_folder = os.path.dirname(os.path.abspath(__file__))  # for strange inovice debug only
 
 pdf_paths = get_pdf_paths(inovice_folder)
 

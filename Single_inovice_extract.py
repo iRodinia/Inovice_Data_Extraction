@@ -59,36 +59,40 @@ def extract_inovice_info(fpath):
                             _layout['item_type_bx'][0] = text_line.x0-D_PIX
                             break
 
-                if '单  位' in ele_text:
+                if '单  位' in ele_text or '单位\n' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '单  位' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '单  位' in lin_text or '单位\n' in lin_text_no_space:
                             _layout['item_type_bx'][2:4] = [text_line.x0, text_line.y0+D_PIX]
                             _layout['item_unit_bx'][0] = text_line.x0-D_PIX
                             _layout['item_number_bx'][0] = text_line.x1+D_PIX
                             break
 
-                if '数  量' in ele_text:
+                if '数  量' in ele_text or '数量\n' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '数  量' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '数  量' in lin_text or '数量\n' in lin_text_no_space:
                             _layout['item_unit_bx'][2:4] = [text_line.x0, text_line.y0+D_PIX]
                             _layout['item_number_bx'][2:4] = [text_line.x1+D_PIX, text_line.y0+D_PIX]
                             _layout['item_uniprice_bx'][0] = text_line.x1
                             break
 
-                if '单  价' in ele_text:
+                if '单  价' in ele_text or '单价\n' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '单  价' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '单  价' in lin_text or '单价\n' in lin_text_no_space:
                             _layout['item_uniprice_bx'][2:4] = [text_line.x1+D_PIX, text_line.y0+D_PIX]
                             _layout['item_price_bx'][0] = text_line.x1
                             break
 
-                if '金  额' in ele_text:
+                if '金  额' in ele_text or '金额\n' in ele_text_no_space or '金额税率/征收率' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '金  额' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '金  额' in lin_text or '金额' in lin_text_no_space:
                             for character in text_line:
                                 if isinstance(character, LTChar) and character.get_text() == '额':
                                     _layout['item_price_bx'][2:4] = [character.x1+D_PIX, character.y0+D_PIX]
@@ -107,18 +111,20 @@ def extract_inovice_info(fpath):
                                     _layout['total_tax_bx'][0] = character.x1
                             break
 
-                if '税  额' in ele_text:
+                if '税  额' in ele_text or '税额\n' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '税  额' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '税  额' in lin_text or '税额\n' in lin_text_no_space:
                             _layout['item_tax_bx'][2:4] = [page.x1, text_line.y0+D_PIX]
                             break
                 
-                if '小        计' in ele_text:
+                if '小        计' in ele_text or '小计\n' in ele_text_no_space:
                     multi_pages = True
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '小        计' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '小        计' in lin_text or '小计\n' in lin_text_no_space:
                             _layout['item_name_bx'][1] = text_line.y1
                             _layout['item_type_bx'][1] = text_line.y1
                             _layout['item_unit_bx'][1] = text_line.y1
@@ -129,10 +135,11 @@ def extract_inovice_info(fpath):
                             _layout['item_tax_bx'][1] = text_line.y1
                             break
                 
-                if '合        计' in ele_text:
+                if '合        计' in ele_text or '合计\n' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '合        计' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '合        计' in lin_text or '合计\n' in lin_text_no_space:
                             if not multi_pages:
                                 _layout['item_name_bx'][1] = text_line.y1
                                 _layout['item_type_bx'][1] = text_line.y1
