@@ -100,10 +100,11 @@ def extract_inovice_info(fpath):
                                     _layout['total_price_bx'][2] = character.x1+D_PIX
                             break
                 
-                if '税率/征收率' in ele_text:
+                if '税率/征收率' in ele_text or '税率/征收率' in ele_text_no_space:
                     for text_line in element:
                         lin_text = text_line.get_text()
-                        if '税率/征收率' in lin_text:
+                        lin_text_no_space = lin_text.replace(' ', '')
+                        if '税率/征收率' in lin_text or '税率/征收率' in lin_text_no_space:
                             for character in text_line:
                                 if isinstance(character, LTChar) and character.get_text() == '率':
                                     _layout['item_taxrate_bx'][2:4] = [character.x1+D_PIX, character.y0+D_PIX]
